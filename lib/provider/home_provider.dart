@@ -31,4 +31,8 @@ class HomeProvider extends ChangeNotifier {
     Navigator.pushNamed(context, '/userDetails');
     notifyListeners();
   }
+  void save(BuildContext context,String name,String age) {
+    Navigator.pushNamed(context, '/home',arguments: {'name': name, 'age': age});
+    notifyListeners();
+  }
 }

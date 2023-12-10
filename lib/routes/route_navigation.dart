@@ -18,7 +18,7 @@ class AppRoute {
         );
       case RouteName.home:
         return MaterialPageRoute(
-          builder: (context) => const HomeScreen(),
+          builder: (context) =>  HomeScreen(),
         );
       case RouteName.userDetails:
         return MaterialPageRoute(
