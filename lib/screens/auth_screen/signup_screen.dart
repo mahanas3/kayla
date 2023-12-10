@@ -110,7 +110,7 @@ class _SignUpState extends State<SignUp> {
                         ),
                         TextButton(
                             onPressed: () {
-                              context.read<AuthProvider>().login(context);
+                             Navigator.pushNamed(context, '/signup');
                             },
                             child: Text(
                               'Sign in',

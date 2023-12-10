@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kayla/utilities/dimensions.dart';
 
 class CustomUserTextField extends StatefulWidget {
   const CustomUserTextField({
@@ -7,14 +8,12 @@ class CustomUserTextField extends StatefulWidget {
     required this.hintText,
     required this.controller,
     required this.validator,
-
   }) : super(key: key);
 
   final String labelText;
   final String hintText;
   final TextEditingController controller;
   final String? Function(String?)? validator;
-
 
   @override
   State<CustomUserTextField> createState() => _CustomUserTextFieldState();
@@ -24,25 +23,18 @@ class _CustomUserTextFieldState extends State<CustomUserTextField> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            blurRadius: 1,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
       child: TextFormField(
         controller: widget.controller,
         decoration: InputDecoration(
-          enabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.black),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(
+                Radius.circular(Dimensions.heightCalc(context, 10))),
+            borderSide: const BorderSide(color: Colors.grey),
           ),
           filled: true,
           fillColor: Colors.white,
           focusedBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.white),
+            borderSide: BorderSide(color: Colors.grey),
           ),
           focusColor: Colors.grey,
           hintText: widget.hintText,
@@ -54,7 +46,7 @@ class _CustomUserTextFieldState extends State<CustomUserTextField> {
             fontFamily: 'RobotoMedium',
           ),
           contentPadding:
-              const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+          const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
         ),
       ),
     );
