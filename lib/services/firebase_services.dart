@@ -11,6 +11,15 @@ class FirebaseServices {
       rethrow;
     }
   }
+  Future<void> signInWithEmailAndPassword(String email, String password) async {
+    try {
+      await _firebaseAuth.signInWithEmailAndPassword(
+          email: email, password: password);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
 
   Future getOtp(String phoneNo) async {
     try {

@@ -97,15 +97,29 @@ class LoginScreen extends StatelessWidget {
                 SizedBox(
                     height: Dimensions.heightCalc(context, 55),
                     width: Dimensions.widthCalc(context, 270),
-                    child: CustomButton(
-                      text: 'Sign in',
-                      onPressed: () {
-                        if (_formkey.currentState!.validate()) {
-                          context.read<HomeProvider>().home(context);
-                        }
-                      },
-                      color: const Color(0xff01796F),
-                    )),
+                    child: Consumer<AuthentificationProvider>(
+                        builder: (context, value, child) {
+                      return value.loading
+                          ? const Center(
+                              child: CircularProgressIndicator(
+                                color: Colors.teal,
+                              ),
+                            )
+                          : CustomButton(
+                              text: 'Sign in',
+                              onPressed: () {
+                                if (_formkey.currentState!.validate()) {
+                                  context
+                                      .read<AuthentificationProvider>()
+                                      .login(
+                                          context: context,
+                                          email: emailController.text,
+                                          password: passwordController.text);
+                                }
+                              },
+                              color: const Color(0xff01796F),
+                            );
+                    })),
                 Padding(
                   padding: EdgeInsets.only(
                       top: Dimensions.heightCalc(context, 16),
@@ -167,7 +181,9 @@ class LoginScreen extends StatelessWidget {
                       ),
                       InkWell(
                         onTap: () {
-                          context.read<AuthentificationProvider>().phone(context);
+                          context
+                              .read<AuthentificationProvider>()
+                              .phone(context);
                         },
                         child: Container(
                           height: Dimensions.heightCalc(context, 35),

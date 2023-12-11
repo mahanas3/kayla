@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -39,6 +41,8 @@ class _UserDetailsState extends State<UserDetails> {
 
     return null;
   }
+
+  File ?image;
 
   @override
   Widget build(BuildContext context) {
@@ -83,15 +87,18 @@ class _UserDetailsState extends State<UserDetails> {
                 child: PopupMenuButton<String>(
                   onSelected: (value) async {
                     if (value == 'camera') {
-                      final XFile? image = await _picker.pickImage(
+                      final XFile? imagex = await _picker.pickImage(
                         source: ImageSource.camera,
                         imageQuality: 50,
                       );
+
+                      image = File(imagex!.path);
                     } else if (value == 'gallery') {
-                      final XFile? image = await _picker.pickImage(
+                      final XFile? imagex = await _picker.pickImage(
                         source: ImageSource.gallery,
                         imageQuality: 50,
                       );
+                      image = File(imagex!.path);
                     }
                   },
                   itemBuilder: (BuildContext context) {
@@ -226,6 +233,7 @@ class _UserDetailsState extends State<UserDetails> {
                       context,
                       nameController.text,
                       ageController.text,
+                      image!,
                     );
                   }
                 }, color: const Color(0xff01796F),),

@@ -32,9 +32,25 @@ class AuthentificationProvider extends ChangeNotifier {
     }
   }
 
-  void login(BuildContext context) {
-    Navigator.pushNamed(context, '/loginScreen');
-    notifyListeners();
+  void login({required BuildContext context,required String email,required password}) async{
+    try{
+      loading = true;
+      notifyListeners();
+      await firebaseServices.signInWithEmailAndPassword(email, password);
+      loading = false;
+      notifyListeners();
+
+
+    }catch(e){
+
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Something Went Wrong')));
+      }
+      loading = false;
+      notifyListeners();
+
+    }
   }
 
   void phone(BuildContext context) {

@@ -1,6 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:kayla/services/firestore_screen.dart';
+import 'package:kayla/services/firestore_services.dart';
 
 import '../routes/route_name.dart';
 
@@ -15,6 +17,8 @@ class HomeProvider extends ChangeNotifier {
   bool  loading = false;
 
   List<Map<String, dynamic>> users = [];
+
+  File ?image;
 
   void home(BuildContext context) {
     Navigator.pushNamed(context, '/home');
@@ -45,11 +49,14 @@ class HomeProvider extends ChangeNotifier {
     BuildContext context,
     String name,
     String age,
+      File image
   ) async {
     try {
       loading = true;
       notifyListeners();
-      await FireStoreServices().addStudent(name: name, age: age);
+
+
+      await FireStoreServices().addStudent(name: name, age: age, image: image);
       if (context.mounted) {
         Navigator.pushReplacementNamed(context, RouteName.home);
       }
@@ -63,5 +70,8 @@ class HomeProvider extends ChangeNotifier {
       loading = false;
       notifyListeners();
     }
+  }
+  void getImage(String value){
+
   }
 }
