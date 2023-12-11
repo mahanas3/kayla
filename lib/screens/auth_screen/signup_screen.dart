@@ -24,8 +24,8 @@ class _SignUpState extends State<SignUp> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Consumer<AuthProvider>(
-        builder: (BuildContext context, AuthProvider value, Widget? child) {
+      body: Consumer<AuthentificationProvider>(
+        builder: (BuildContext context, AuthentificationProvider value, Widget? child) {
           return value.loading
               ? const Center(
                   child: CircularProgressIndicator(
@@ -101,7 +101,7 @@ class _SignUpState extends State<SignUp> {
                                   text: 'Sign Up',
                                   onPressed: () {
                                     if (formKey.currentState!.validate()) {
-                                      context.read<AuthProvider>().signUp(
+                                      context.read<AuthentificationProvider>().signUp(
                                           context: context,
                                           email: emailController1.text,
                                           password: passwordController1.text);

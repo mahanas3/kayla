@@ -1,9 +1,9 @@
-import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:kayla/custom_widget/custom_button.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:kayla/custom_widget/customadd_button.dart';
-import 'package:kayla/custom_widget/custommobile_textfield.dart';
+import 'package:kayla/provider/auth_provider.dart';
 import 'package:kayla/utilities/dimensions.dart';
+import 'package:provider/provider.dart';
 
 class MobileOtp extends StatefulWidget {
   const MobileOtp({super.key});
@@ -29,11 +29,33 @@ class _MobileOtpState extends State<MobileOtp> {
                 left: Dimensions.heightCalc(context, 20),
                 right: Dimensions.heightCalc(context, 20),
               ),
-              child: CustomOtpTextField(
-                labelText: 'Enter your phone number',
-                hintText: 'Enter your phone number',
-                controller: phoneNoController,
-                keyBoard: 1,
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius:
+                      BorderRadius.circular(Dimensions.heightCalc(context, 30)),
+                  color: Colors.white,
+                  border: Border.all(color: Colors.white),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      blurRadius: 2,
+                      offset: const Offset(0, 2),
+                    ),
+                  ],
+                ),
+                child: IntlPhoneField(
+                  controller: phoneNoController,
+                  decoration: const InputDecoration(
+                    hintText: 'Enter your phone number',
+                    hintStyle: TextStyle(fontFamily: 'RobotoRegular'),
+                    border: InputBorder.none,
+                  ),
+                  showCountryFlag: false,
+                  initialCountryCode: 'IN',
+                  onChanged: (phone) {},
+                  disableLengthCheck: true,
+                  showDropdownIcon: false,
+                ),
               ),
             ),
             Padding(
@@ -43,14 +65,15 @@ class _MobileOtpState extends State<MobileOtp> {
                 height: Dimensions.heightCalc(context, 40),
                 child: CustomAddButton(
                   text: 'Get OTP',
-                  onPressed: () {
+                  onPressed: () async{
+                    await context.read<AuthentificationProvider>().mobileOtp(context, phoneNoController.text);
                     showMenu(
                       context: context,
-                      position: const RelativeRect.fromLTRB(
-                        300.0,
-                        300.0,
-                        60.0,
-                        100.0,
+                      position: RelativeRect.fromLTRB(
+                        Dimensions.heightCalc(context, 300),
+                        Dimensions.heightCalc(context, 300),
+                        Dimensions.heightCalc(context, 60),
+                        Dimensions.heightCalc(context, 100),
                       ),
                       items: [
                         PopupMenuItem<String>(
@@ -113,13 +136,6 @@ class _MobileOtpState extends State<MobileOtp> {
                 ),
               ),
             ),
-            const CountryCodePicker(
-              initialSelection: 'IT',
-              favorite: ['+91', 'IN'],
-              showCountryOnly: false,
-              showOnlyCountryWhenClosed: false,
-              alignLeft: false,
-            )
           ],
         ),
       ),

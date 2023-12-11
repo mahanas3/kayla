@@ -20,11 +20,11 @@ class LoginScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Align(
-        alignment: Alignment.topCenter,
-        child: Padding(
-          padding: EdgeInsets.only(top: Dimensions.heightCalc(context, 100)),
-          child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Align(
+          alignment: Alignment.topCenter,
+          child: Padding(
+            padding: EdgeInsets.only(top: Dimensions.heightCalc(context, 100)),
             child: Column(
               children: [
                 Text('Hello!',
@@ -167,7 +167,7 @@ class LoginScreen extends StatelessWidget {
                       ),
                       InkWell(
                         onTap: () {
-                          context.read<AuthProvider>().mobileOtp(context);
+                          context.read<AuthentificationProvider>().phone(context);
                         },
                         child: Container(
                           height: Dimensions.heightCalc(context, 35),

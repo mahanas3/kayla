@@ -11,7 +11,7 @@ void main() async {
   await Firebase.initializeApp();
   runApp(MultiProvider(
     providers: [
-      ChangeNotifierProvider(create: (context) => AuthProvider()),
+      ChangeNotifierProvider(create: (context) => AuthentificationProvider()),
       ChangeNotifierProvider(create: (context) => HomeProvider()),
     ],
     child: const Main(),

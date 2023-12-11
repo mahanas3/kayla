@@ -1,10 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kayla/services/firebase_services.dart';
 
 import '../routes/route_name.dart';
 
-class AuthProvider extends ChangeNotifier {
+class AuthentificationProvider extends ChangeNotifier {
+
   bool loading = false;
 
   final firebaseServices = FirebaseServices();
@@ -37,8 +37,28 @@ class AuthProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void mobileOtp(BuildContext context) {
+  void phone(BuildContext context) {
     Navigator.pushNamed(context, RouteName.mobileOtp);
     notifyListeners();
+  }
+
+  Future<void> mobileOtp(BuildContext context, String phoneNo) async {
+    try {
+      loading = true;
+      notifyListeners();
+      await firebaseServices.getOtp(phoneNo);
+      if (context.mounted) {
+        Navigator.pushReplacementNamed(context, RouteName.home);
+      }
+      loading = false;
+      notifyListeners();
+    } catch (e) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Something Went Wrong')));
+      }
+      loading = false;
+      notifyListeners();
+    }
   }
 }

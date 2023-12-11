@@ -11,4 +11,12 @@ class FirebaseServices {
       rethrow;
     }
   }
+
+  Future getOtp(String phoneNo) async {
+    try {
+      await _firebaseAuth.signInWithPhoneNumber(phoneNo);
+    } catch (e) {
+      rethrow;
+    }
+  }
 }
