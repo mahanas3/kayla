@@ -5,6 +5,7 @@ import 'package:kayla/provider/home_provider.dart';
 import 'package:kayla/utilities/dimensions.dart';
 import 'package:provider/provider.dart';
 import '../../custom_widget/custom_textfield.dart';
+import '../../routes/route_name.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -97,12 +98,14 @@ class LoginScreen extends StatelessWidget {
                     height: Dimensions.heightCalc(context, 55),
                     width: Dimensions.widthCalc(context, 270),
                     child: CustomButton(
-                        text: 'Sign in',
-                        onPressed: () {
-                          if (_formkey.currentState!.validate()) {
-                            context.read<HomeProvider>().home(context);
-                          }
-                        })),
+                      text: 'Sign in',
+                      onPressed: () {
+                        if (_formkey.currentState!.validate()) {
+                          context.read<HomeProvider>().home(context);
+                        }
+                      },
+                      color: const Color(0xff01796F),
+                    )),
                 Padding(
                   padding: EdgeInsets.only(
                       top: Dimensions.heightCalc(context, 16),
@@ -118,7 +121,7 @@ class LoginScreen extends StatelessWidget {
                       ),
                       TextButton(
                           onPressed: () {
-                            context.read<AuthProvider>().signUp(context);
+                            Navigator.pushNamed(context, RouteName.signup);
                           },
                           child: Text(
                             'Sign Up',
@@ -146,27 +149,35 @@ class LoginScreen extends StatelessWidget {
                       top: Dimensions.heightCalc(context, 20)),
                   child: Row(
                     children: [
-                      Container(
-                        height: Dimensions.heightCalc(context, 65),
-                        width: Dimensions.widthCalc(context, 65),
-                        decoration: BoxDecoration(
-                          image: const DecorationImage(
-                              image: AssetImage('assets/images/google.png'),
-                              fit: BoxFit.fill),
-                          borderRadius: BorderRadius.circular(20),
+                      InkWell(
+                        onTap: () {},
+                        child: Container(
+                          height: Dimensions.heightCalc(context, 65),
+                          width: Dimensions.widthCalc(context, 65),
+                          decoration: BoxDecoration(
+                            image: const DecorationImage(
+                                image: AssetImage('assets/images/google.png'),
+                                fit: BoxFit.fill),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
                         ),
                       ),
                       SizedBox(
                         width: Dimensions.widthCalc(context, 60),
                       ),
-                      Container(
-                        height: Dimensions.heightCalc(context, 35),
-                        width: Dimensions.widthCalc(context, 35),
-                        decoration: BoxDecoration(
-                          image: const DecorationImage(
-                              image: AssetImage('assets/images/mobile.png'),
-                              fit: BoxFit.fill),
-                          borderRadius: BorderRadius.circular(20),
+                      InkWell(
+                        onTap: () {
+                          context.read<AuthProvider>().mobileOtp(context);
+                        },
+                        child: Container(
+                          height: Dimensions.heightCalc(context, 35),
+                          width: Dimensions.widthCalc(context, 35),
+                          decoration: BoxDecoration(
+                            image: const DecorationImage(
+                                image: AssetImage('assets/images/mobile.png'),
+                                fit: BoxFit.fill),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
                         ),
                       ),
                     ],

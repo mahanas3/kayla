@@ -8,6 +8,8 @@ class HomeProvider extends ChangeNotifier {
 
   double get maxValue => _maxValue;
 
+  List<Map<String,dynamic>> users = [];
+
   void home(BuildContext context) {
     Navigator.pushNamed(context, '/home');
     notifyListeners();
@@ -27,12 +29,22 @@ class HomeProvider extends ChangeNotifier {
     Navigator.pushNamed(context, '/userDetails');
     notifyListeners();
   }
+
   void signOut(BuildContext context) {
-    Navigator.pushNamed(context, '/userDetails');
+    Navigator.pushNamed(context, '/logIn');
     notifyListeners();
   }
-  void save(BuildContext context,String name,String age) {
-    Navigator.pushNamed(context, '/home',arguments: {'name': name, 'age': age});
+
+  void save(
+    BuildContext context,
+    String name,
+    String age,
+  ) {
+    users.add({"name": name, "age": age});
+    Navigator.pushNamed(
+      context,
+      '/home',
+    );
     notifyListeners();
   }
 }

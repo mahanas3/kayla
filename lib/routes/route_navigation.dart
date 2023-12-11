@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kayla/routes/route_name.dart';
 import 'package:kayla/screens/auth_screen/login_screen.dart';
+import 'package:kayla/screens/auth_screen/mobileotp_screen.dart';
 import 'package:kayla/screens/auth_screen/signup_screen.dart';
 import 'package:kayla/screens/home_screen/home_page.dart';
 import 'package:kayla/screens/home_screen/userdetails_screen.dart';
@@ -18,7 +19,7 @@ class AppRoute {
         );
       case RouteName.home:
         return MaterialPageRoute(
-          builder: (context) =>  HomeScreen(),
+          builder: (context) => const HomeScreen(),
         );
       case RouteName.userDetails:
         return MaterialPageRoute(
@@ -27,6 +28,10 @@ class AppRoute {
       case RouteName.signOut:
         return MaterialPageRoute(
           builder: (context) => const LoginScreen(),
+        );
+      case RouteName.mobileOtp:
+        return MaterialPageRoute(
+          builder: (context) => const MobileOtp(),
         );
       default:
         {

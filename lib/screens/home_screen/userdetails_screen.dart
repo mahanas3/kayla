@@ -15,7 +15,7 @@ class UserDetails extends StatefulWidget {
 }
 
 class _UserDetailsState extends State<UserDetails> {
-  final ImagePicker _picker = ImagePicker(); // ImagePicker instance
+  final ImagePicker _picker = ImagePicker();
 
   final nameController = TextEditingController();
   final ageController = TextEditingController();
@@ -91,8 +91,8 @@ class _UserDetailsState extends State<UserDetails> {
                       PopupMenuItem<String>(
                         enabled: false,
                         child: SizedBox(
-                          height: 50,
-                          width: 160,
+                          height: Dimensions.heightCalc(context, 50),
+                          width: Dimensions.widthCalc(context, 160),
                           child: Center(
                             child: Padding(
                               padding: EdgeInsets.only(
@@ -212,11 +212,15 @@ class _UserDetailsState extends State<UserDetails> {
               width: Dimensions.widthCalc(context, 270),
               child: CustomButton(
                   text: 'Save',
-                  onPressed: () {
-                    context
-                        .read<HomeProvider>()
-                        .save(context, nameController.text, ageController.text);
-                  }),
+                onPressed: () {
+                  if (_formkey.currentState!.validate()) {
+                    context.read<HomeProvider>().save(
+                      context,
+                      nameController.text,
+                      ageController.text,
+                    );
+                  }
+                }, color: const Color(0xff01796F),),
             ),
             Padding(
               padding: EdgeInsets.only(
