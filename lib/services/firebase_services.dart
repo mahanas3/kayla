@@ -14,8 +14,16 @@ class FirebaseServices {
 
   Future getOtp(String phoneNo) async {
     try {
-      await _firebaseAuth.signInWithPhoneNumber(phoneNo);
+      await _firebaseAuth.verifyPhoneNumber(
+        phoneNumber: '+917736848926',
+          verificationCompleted: (PhoneAuthCredential phoneAuthCredential) {
+          print('fghj');
+          },
+          verificationFailed: (FirebaseAuthException error) {},
+          codeSent: (String verificationId, int? forceResendingToken) {},
+          codeAutoRetrievalTimeout: (String verificationId) {});
     } catch (e) {
+      print(e);
       rethrow;
     }
   }

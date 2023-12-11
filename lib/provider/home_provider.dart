@@ -1,4 +1,8 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:kayla/services/firestore_screen.dart';
+
+import '../routes/route_name.dart';
 
 class HomeProvider extends ChangeNotifier {
   double _minValue = 0.0;
@@ -8,7 +12,9 @@ class HomeProvider extends ChangeNotifier {
 
   double get maxValue => _maxValue;
 
-  List<Map<String,dynamic>> users = [];
+  bool  loading = false;
+
+  List<Map<String, dynamic>> users = [];
 
   void home(BuildContext context) {
     Navigator.pushNamed(context, '/home');
@@ -35,16 +41,27 @@ class HomeProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void save(
+  Future save(
     BuildContext context,
     String name,
     String age,
-  ) {
-    users.add({"name": name, "age": age});
-    Navigator.pushNamed(
-      context,
-      '/home',
-    );
-    notifyListeners();
+  ) async {
+    try {
+      loading = true;
+      notifyListeners();
+      await FireStoreServices().addStudent(name: name, age: age);
+      if (context.mounted) {
+        Navigator.pushReplacementNamed(context, RouteName.home);
+      }
+      loading = false;
+      notifyListeners();
+    } catch (e) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Something Went Wrong')));
+      }
+      loading = false;
+      notifyListeners();
+    }
   }
 }

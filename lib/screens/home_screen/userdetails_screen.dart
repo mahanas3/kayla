@@ -42,8 +42,16 @@ class _UserDetailsState extends State<UserDetails> {
 
   @override
   Widget build(BuildContext context) {
+
+    final provider=context.watch<HomeProvider>();
+
     return Scaffold(
-      body: SingleChildScrollView(
+
+      body: provider.loading?const Center(
+        child: CircularProgressIndicator(
+          color: Colors.black,
+        ),
+      ):SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(
           children: [
