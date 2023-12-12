@@ -24,8 +24,8 @@ class _SignUpState extends State<SignUp> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Consumer<AuthentificationProvider>(
-        builder: (BuildContext context, AuthentificationProvider value, Widget? child) {
+      body: Consumer<AuthenticationProvider>(
+        builder: (BuildContext context, AuthenticationProvider value, Widget? child) {
           return value.loading
               ? const Center(
                   child: CircularProgressIndicator(
@@ -103,7 +103,7 @@ class _SignUpState extends State<SignUp> {
                                   text: 'Sign Up',
                                   onPressed: () {
                                     if (formKey.currentState!.validate()) {
-                                      context.read<AuthentificationProvider>().signUp(
+                                      context.read<AuthenticationProvider>().signUp(
                                           context: context,
                                           email: emailController1.text,
                                           password: passwordController1.text);
@@ -171,7 +171,7 @@ class _SignUpState extends State<SignUp> {
                                 InkWell(
                                   onTap: () {
                                     context
-                                        .read<AuthentificationProvider>()
+                                        .read<AuthenticationProvider>()
                                         .phone(context);
                                   },
                                   child: Container(

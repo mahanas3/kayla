@@ -67,7 +67,7 @@ class _MobileOtpState extends State<MobileOtp> {
                 child: CustomAddButton(
                   text: 'Get OTP',
                   onPressed: () async{
-                    await context.read<AuthentificationProvider>().mobileOtp(context, phoneNoController.text);
+                    await context.read<AuthenticationProvider>().mobileOtp(context, phoneNoController.text);
                     showMenu(
                       context: context,
                       position: RelativeRect.fromLTRB(

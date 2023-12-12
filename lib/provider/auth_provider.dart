@@ -3,7 +3,7 @@ import 'package:kayla/services/firebase_services.dart';
 
 import '../routes/route_name.dart';
 
-class AuthentificationProvider extends ChangeNotifier {
+class AuthenticationProvider extends ChangeNotifier {
   bool loading = false;
 
   final firebaseServices = FirebaseServices();

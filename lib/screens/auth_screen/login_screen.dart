@@ -24,8 +24,8 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Consumer<AuthentificationProvider>(
-        builder: (BuildContext context, AuthentificationProvider value,
+      body: Consumer<AuthenticationProvider>(
+        builder: (BuildContext context, AuthenticationProvider value,
             Widget? child) {
           return value.loading
               ? const Center(
@@ -119,7 +119,7 @@ class _LoginState extends State<Login> {
                                   onPressed: () {
                                     if (formKey.currentState!.validate()) {
                                       context
-                                          .read<AuthentificationProvider>()
+                                          .read<AuthenticationProvider>()
                                           .login(
                                               context: context,
                                               email: emailController.text,
@@ -259,7 +259,7 @@ class _LoginState extends State<Login> {
                                   InkWell(
                                     onTap: () {
                                       context
-                                          .read<AuthentificationProvider>()
+                                          .read<AuthenticationProvider>()
                                           .phone(context);
                                     },
                                     child: Container(
