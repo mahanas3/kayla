@@ -39,6 +39,9 @@ class AuthentificationProvider extends ChangeNotifier {
       loading = true;
       notifyListeners();
       await firebaseServices.signInWithEmailAndPassword(email, password);
+      if (context.mounted) {
+        Navigator.pushReplacementNamed(context, RouteName.home);
+      }
       loading = false;
       notifyListeners();
     } catch (e) {
@@ -72,5 +75,10 @@ class AuthentificationProvider extends ChangeNotifier {
       loading = false;
       notifyListeners();
     }
+  }
+
+  Future googleAccount(BuildContext context) async {
+    Navigator.pushNamed(context, RouteName.google);
+    notifyListeners();
   }
 }

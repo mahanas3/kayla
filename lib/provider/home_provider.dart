@@ -1,10 +1,6 @@
 import 'dart:io';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kayla/services/firestore_services.dart';
-
-import '../routes/route_name.dart';
 
 class HomeProvider extends ChangeNotifier {
   double _minValue = 0.0;
@@ -75,8 +71,9 @@ class HomeProvider extends ChangeNotifier {
   }
   void setImage(File pickedImage){
     image = pickedImage;
-    print(image);
     notifyListeners();
+  }
+  void search(){
 
   }
 }

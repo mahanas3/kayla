@@ -5,10 +5,16 @@ import 'package:kayla/provider/home_provider.dart';
 import 'package:kayla/routes/route_name.dart';
 import 'package:kayla/routes/route_navigation.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_app_check/firebase_app_check.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+
+  FirebaseAppCheck.instance.activate();
+
+
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (context) => AuthentificationProvider()),

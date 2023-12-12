@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kayla/routes/route_name.dart';
+import 'package:kayla/screens/auth_screen/google_screen.dart';
 import 'package:kayla/screens/auth_screen/login_screen.dart';
 import 'package:kayla/screens/auth_screen/mobileotp_screen.dart';
 import 'package:kayla/screens/auth_screen/signup_screen.dart';
@@ -32,6 +33,10 @@ class AppRoute {
       case RouteName.mobileOtp:
         return MaterialPageRoute(
           builder: (context) => const MobileOtp(),
+        );
+      case RouteName.google:
+        return MaterialPageRoute(
+          builder: (context) => const Google(),
         );
       default:
         {
