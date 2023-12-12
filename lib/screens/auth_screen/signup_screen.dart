@@ -65,11 +65,12 @@ class _SignUpState extends State<SignUp> {
                                 hintText: 'Email',
                                 controller: emailController1,
                                 validator: (value) {
-                                  if (value == null ||
-                                      value.isEmpty ||
-                                      !value.endsWith('@gmail.com')) {
-                                    return 'Please enter valid email';
+                                  if (value!.isEmpty) {
+                                    return 'Enter a valid password!';
+                                  } else if (value.length < 8) {
+                                    return 'Password must be at least 8 characters';
                                   }
+                                  return null;
                                 },
                               ),
                             ),
@@ -84,10 +85,11 @@ class _SignUpState extends State<SignUp> {
                               hintText: 'Password',
                               controller: passwordController1,
                               validator: (value) {
-                                if (value!.isEmpty) {
-                                  return 'Enter a valid password!';
+                                if (value == null ||
+                                    value.isEmpty
+                                    ) {
+                                  return 'Please enter valid email';
                                 }
-                                return null;
                               },
                             ),
                           ),

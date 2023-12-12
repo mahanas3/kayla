@@ -33,8 +33,10 @@ class _CustomUserTextFieldState extends State<CustomUserTextField> {
           ),
           filled: true,
           fillColor: Colors.white,
-          focusedBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.grey),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(
+                Radius.circular(Dimensions.heightCalc(context, 10))),
+            borderSide: const BorderSide(color: Color(0xff01796F)),
           ),
           focusColor: Colors.grey,
           hintText: widget.hintText,
@@ -46,7 +48,7 @@ class _CustomUserTextFieldState extends State<CustomUserTextField> {
             fontFamily: 'RobotoMedium',
           ),
           contentPadding:
-          const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+              const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
         ),
       ),
     );

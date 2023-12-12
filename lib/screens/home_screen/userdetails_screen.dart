@@ -196,10 +196,11 @@ class _UserDetailsState extends State<UserDetails> {
                         controller: nameController,
                         validator: (value) {
                           if (value!.isEmpty) {
-                            return 'Name should note be empty';
+                            return 'Name should not be empty';
                           }
                           return null;
                         },
+
                       ),
                     ),
                     Padding(
