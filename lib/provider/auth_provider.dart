@@ -76,9 +76,4 @@ class AuthentificationProvider extends ChangeNotifier {
       notifyListeners();
     }
   }
-
-  Future googleAccount(BuildContext context) async {
-    Navigator.pushNamed(context, RouteName.google);
-    notifyListeners();
-  }
 }

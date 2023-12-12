@@ -5,5 +5,4 @@ class RouteName {
   static const String userDetails = '/userDetails';
   static const String signOut = '/signOut';
   static const String mobileOtp = '/mobileOtp';
-  static const String google = '/google';
 }
