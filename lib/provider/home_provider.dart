@@ -49,17 +49,19 @@ class HomeProvider extends ChangeNotifier {
     BuildContext context,
     String name,
     String age,
-      File image
+      
   ) async {
     try {
       loading = true;
       notifyListeners();
 
 
-      await FireStoreServices().addStudent(name: name, age: age, image: image);
+      await FireStoreServices().addStudent(name: name, age: age, image: image!);
       if (context.mounted) {
-        Navigator.pushReplacementNamed(context, RouteName.home);
+        Navigator.pop(context);
+
       }
+      image = null;
       loading = false;
       notifyListeners();
     } catch (e) {
@@ -71,7 +73,10 @@ class HomeProvider extends ChangeNotifier {
       notifyListeners();
     }
   }
-  void getImage(String value){
+  void setImage(File pickedImage){
+    image = pickedImage;
+    print(image);
+    notifyListeners();
 
   }
 }

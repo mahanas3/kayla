@@ -13,6 +13,7 @@ class MobileOtp extends StatefulWidget {
 }
 
 class _MobileOtpState extends State<MobileOtp> {
+
   final phoneNoController = TextEditingController();
 
   final otpController = TextEditingController();

@@ -11,7 +11,7 @@ class AppRoute {
     switch (setting.name) {
       case RouteName.loginScreen:
         return MaterialPageRoute(
-          builder: (context) => const LoginScreen(),
+          builder: (context) => const Login(),
         );
       case RouteName.signup:
         return MaterialPageRoute(
@@ -27,7 +27,7 @@ class AppRoute {
         );
       case RouteName.signOut:
         return MaterialPageRoute(
-          builder: (context) => const LoginScreen(),
+          builder: (context) => const Login(),
         );
       case RouteName.mobileOtp:
         return MaterialPageRoute(
@@ -36,7 +36,7 @@ class AppRoute {
       default:
         {
           return MaterialPageRoute(
-            builder: (context) => const LoginScreen(),
+            builder: (context) => const Login(),
           );
         }
     }

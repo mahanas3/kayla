@@ -32,7 +32,7 @@ class CustomButton extends StatelessWidget {
         style: TextStyle(
             color: Colors.white,
             fontFamily: 'Roboto',
-            fontSize: Dimensions.heightCalc(context, 18)),
+            fontSize: Dimensions.heightCalc(context, 17)),
       ),
     );
   }

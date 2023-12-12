@@ -9,9 +9,9 @@ class FireStoreServices {
   Future addStudent(
       {required String name, required String age, required File image}) async {
     try {
-
       var imageName = DateTime.now().millisecondsSinceEpoch.toString();
-      var storageRef = FirebaseStorage.instance.ref().child('driver_images/$imageName.jpg');
+      var storageRef =
+          FirebaseStorage.instance.ref().child('driver_images/$imageName.jpg');
       var uploadTask = storageRef.putFile(image);
       var downloadUrl = await (await uploadTask).ref.getDownloadURL();
       await _fireStore
@@ -22,4 +22,6 @@ class FireStoreServices {
       rethrow;
     }
   }
+
+
 }

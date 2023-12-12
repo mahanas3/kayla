@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import '../../custom_widget/custom_button.dart';
 import '../../custom_widget/custom_textfield.dart';
 import '../../provider/auth_provider.dart';
-import '../../provider/home_provider.dart';
+import '../../routes/route_name.dart';
 import '../../utilities/dimensions.dart';
 
 class SignUp extends StatefulWidget {
@@ -118,18 +118,18 @@ class _SignUpState extends State<SignUp> {
                                   style: TextStyle(
                                       color: Colors.grey,
                                       fontSize:
-                                          Dimensions.heightCalc(context, 15),
+                                          Dimensions.heightCalc(context, 14),
                                       fontFamily: 'RobotoMedium'),
                                 ),
                                 TextButton(
                                     onPressed: () {
-                                      Navigator.pushNamed(context, '/signIn');
+                                      Navigator.pushNamed(context, RouteName.loginScreen);
                                     },
                                     child: Text(
                                       'Sign in',
                                       style: TextStyle(
                                           fontSize: Dimensions.heightCalc(
-                                              context, 19),
+                                              context, 17),
                                           color: const Color(0xff01796F)),
                                     ))
                               ],
@@ -166,15 +166,21 @@ class _SignUpState extends State<SignUp> {
                                 SizedBox(
                                   width: Dimensions.widthCalc(context, 60),
                                 ),
-                                Container(
-                                  height: Dimensions.heightCalc(context, 35),
-                                  width: Dimensions.widthCalc(context, 35),
-                                  decoration: BoxDecoration(
-                                    image: const DecorationImage(
-                                        image: AssetImage(
-                                            'assets/images/mobile.png'),
-                                        fit: BoxFit.fill),
-                                    borderRadius: BorderRadius.circular(20),
+                                InkWell(
+                                  onTap: () {
+                                    context
+                                        .read<AuthentificationProvider>()
+                                        .phone(context);
+                                  },
+                                  child: Container(
+                                    height: Dimensions.heightCalc(context, 35),
+                                    width: Dimensions.widthCalc(context, 35),
+                                    decoration: BoxDecoration(
+                                      image: const DecorationImage(
+                                          image: AssetImage('assets/images/mobile.png'),
+                                          fit: BoxFit.fill),
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
                                   ),
                                 ),
                               ],

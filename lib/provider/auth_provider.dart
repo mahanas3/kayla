@@ -4,7 +4,6 @@ import 'package:kayla/services/firebase_services.dart';
 import '../routes/route_name.dart';
 
 class AuthentificationProvider extends ChangeNotifier {
-
   bool loading = false;
 
   final firebaseServices = FirebaseServices();
@@ -32,24 +31,23 @@ class AuthentificationProvider extends ChangeNotifier {
     }
   }
 
-  void login({required BuildContext context,required String email,required password}) async{
-    try{
+  void login(
+      {required BuildContext context,
+      required String email,
+      required password}) async {
+    try {
       loading = true;
       notifyListeners();
       await firebaseServices.signInWithEmailAndPassword(email, password);
       loading = false;
       notifyListeners();
-
-
-    }catch(e){
-
+    } catch (e) {
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Something Went Wrong')));
       }
       loading = false;
       notifyListeners();
-
     }
   }
 
@@ -63,9 +61,7 @@ class AuthentificationProvider extends ChangeNotifier {
       loading = true;
       notifyListeners();
       await firebaseServices.getOtp(phoneNo);
-      if (context.mounted) {
-        Navigator.pushReplacementNamed(context, RouteName.home);
-      }
+      if (context.mounted) {}
       loading = false;
       notifyListeners();
     } catch (e) {
